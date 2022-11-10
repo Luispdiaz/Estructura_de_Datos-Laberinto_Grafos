@@ -13,8 +13,8 @@ import java.awt.Graphics;
 public class Interfaz_laberinto2 {
     private int fila = 0; //Aqui indico las dimensiones dle laberinto
     private int columna = 0;
-    private final int numeroFilas = interfaz_inicio.global;
-    private final int numeroColumnas = interfaz_inicio.global ;
+    private final int numeroFilas = Interfaz_inicio.numero_filas;
+    private final int numeroColumnas = Interfaz_inicio.numero_columnas ;
     private final int altoBloque = 40;
     private final int anchoBloque = 40;
 
@@ -50,29 +50,30 @@ public class Interfaz_laberinto2 {
     // Se toman los Estados de los vertices adyacentes para imprimirlos.
     public int[][] obtieneLaberinto() {
     int laberinto[][]={}; 
-    for (int i=0;i != interfaz_inicio.global;i++){
+    for (int i=0;i != numeroFilas;i++){
     if (i==0){
-    for (int j=0;j!=interfaz_inicio.global;j++){
+    for (int j=0;j!=numeroColumnas;j++){
     laberinto[i][j]=2;
     }
     }
-    else if(i==interfaz_inicio.global-2){
-    for (int j=0;j!=interfaz_inicio.global;j++){
+    else if(i==numeroFilas-2){
+    for (int j=0;j!=numeroColumnas;j++){
     laberinto[i][j]=2;
     }   
     }
     else{
-    for (int j=0;j!=interfaz_inicio.global;j++){
+    for (int j=0;j!=numeroColumnas;j++){
     if(j==0){
     laberinto[i][j]=2;
     }
-    else if(j==interfaz_inicio.global-2){
+    else if(j==numeroColumnas-2){
     laberinto[i][j]=2;
     }
     else{
     int variable1 = i-1;
-    int variable2 = interfaz_inicio.global * variable1;
-    laberinto[i][j]=interfaz_inicio.listagrande.buscar(variable2+j).getEstado();
+    int variable2 = numeroColumnas * variable1;
+    int variable3 = variable2 + j;
+    laberinto[i][j]=Interfaz_inicio.listagrande.buscar(variable3).getEstado();
     }
     }
     }
