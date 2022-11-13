@@ -50,7 +50,7 @@ public class Lista {
         this.pFirst = pFirst;
     }
     
-    // Metodo para verificar si la lista esta vacia.
+    // Metodo para verificar si la Lista esta vacia.
     public boolean vacio() {
         return this.getpFirst() == null;
     }
@@ -62,7 +62,7 @@ public class Lista {
             aux.setpNext(nuevo);
             this.setpLast(nuevo);
             this.getpLast().setpPrev(aux);
-            this.setCantidad(this.getCantidad() + 1);
+            this.setCantidad(this.getCantidad()+1);
         } else {
             this.setpFirst(nuevo);
             this.setpLast(nuevo);
@@ -97,52 +97,51 @@ public class Lista {
         return aux;
     }
     
-    // Metodo random para obtener la esquina que sera el inicio del laberinto.
-    public Vertice getEsquina(int constante, int input) {
+public Vertice getEsquina(int constante, int inputColumnas, int inputFilas) {
         Random rnd = new Random();
         while (true) {
             int aux = rnd.nextInt(constante);
             if (aux == 1) {
-                return this.buscar(aux);
-            } else if (aux == input) {
-                return this.buscar(aux);
-            } else if (aux == input * input + 1 - input) {
-                return this.buscar(aux);
-            } else if (aux == input * input) {
-                return this.buscar(aux);
+                return this.buscar(aux).getpNext();
+            } else if (aux == inputColumnas) {
+                return this.buscar(aux).getpPrev();
+            } else if (aux == ((inputColumnas * inputFilas) + 1) - inputColumnas) {
+                return this.buscar(aux).getpNext();
+            } else if (aux == inputColumnas * inputFilas) {
+                return this.buscar(aux).getpPrev();
             }
         }
 
     }
     
     // Metodo para encontrar la esquina contraria que sera el final del laberinto.
-    public Vertice getEsquinacontraria(int constante, int input) {
+    public Vertice getEsquinacontraria(int constante, int inputFilas, int inputColum) {
         if (constante == 1) {
-            return this.getpLast();
-        } else if (constante == input) {
-            return this.buscar(input * input + 1 - input);
-        } else if (constante == input * input + 1 - input) {
-            return this.buscar(input);
-        } else if (constante == input * input) {
-            return this.buscar(1);
+            return this.buscar(inputFilas*inputColum).getpPrev();
+        } else if (constante == inputColum) {
+            return this.buscar(((inputFilas * inputColum) + 1) - inputColum).getpNext();
+        } else if (constante == ((inputFilas * inputColum) + 1) - inputColum) {
+            return this.buscar(inputColum).getpPrev();
+        } else if (constante == inputColum * inputFilas) {
+            return this.buscar(1).getpNext();
         }
         return null;
     }
     
     // Algoritmo de prim.
-    public Lista arbolExpMinPrim(int input) {
+    public Lista arbolExpMinPrim(int inputFilas,int inputColum) {
         int VerticesTotales = this.getCantidad();
-        Lista listaadyacencia2 = new Lista();
-        vOrigen = new Vertice(0, listaadyacencia2);
-        vOrigen = this.getEsquina(VerticesTotales, input);
-        vOrigen.setEstado(3);
-        vFinal = new Vertice(0, listaadyacencia2);
-        vFinal = this.getEsquinacontraria(vOrigen.getNumVertice(), input);
-        vFinal.setEstado(4);
+//        Lista Listaadyacencia2 = new Lista();
+//        vOrigen = new Vertice(0, Listaadyacencia2);
+//        vOrigen = this.getEsquina(VerticesTotales, inputFilas, inputColum);
+//        vOrigen.setEstado(3);
+//        vFinal = new Vertice(0, Listaadyacencia2);
+//        vFinal = this.getEsquinacontraria(vOrigen.getNumVertice(), inputFilas, inputColum);
+//        vFinal.setEstado(4);
         Lista gNuevo = new Lista();
         for (Vertice i = this.getpFirst(); i != null; i = i.getpNext()) {
-            Lista listaadyacencia = new Lista();
-            Vertice nuevo = new Vertice(i.getNumVertice(), listaadyacencia);
+            Lista Listaadyacencia = new Lista();
+            Vertice nuevo = new Vertice(i.getNumVertice(), Listaadyacencia);
             if (i.getEstado() != 2) {
                 i.setEstado(1);
                 OUTER:
@@ -188,8 +187,8 @@ public class Lista {
     
     // Metodo para copiar los valores de un Vertice. 
     public Vertice CopiarDato(Vertice nodo) {
-        Lista listaadyacencia = new Lista();
-        Vertice nuevo = new Vertice(nodo.getNumVertice(), listaadyacencia);
+        Lista Listaadyacencia = new Lista();
+        Vertice nuevo = new Vertice(nodo.getNumVertice(), Listaadyacencia);
         return nuevo;
     }
 }

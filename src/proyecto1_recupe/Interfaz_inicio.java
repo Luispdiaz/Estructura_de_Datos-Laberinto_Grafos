@@ -13,13 +13,14 @@ import javax.swing.JOptionPane;
 public class Interfaz_inicio extends javax.swing.JFrame {
     static int numero_filas;
     static int numero_columnas;
-    static Lista listagrande;
+    static Lista lista_esquinas;
+    static Lista lista_disponible;
     /**
-     * Creates new form Interfaz_laberinto
+     * Creates new form Interfaz_Juego
      */
     public Interfaz_inicio() {
         initComponents();
-        listagrande = new Lista();   
+        lista_disponible = new Lista();   
     }
 
     /**
@@ -89,14 +90,119 @@ public class Interfaz_inicio extends javax.swing.JFrame {
         if (Integer.parseInt(inputColum.getText()) < 3 || Integer.parseInt(inputColum.getText()) > 30 && Integer.parseInt(inputFilas.getText()) < 3 || Integer.parseInt(inputFilas.getText()) > 30)  {
             JOptionPane.showMessageDialog(null, "No se permite un valor menor a 3 o mayor a 30");
         } else {
-            for (int i = 1; i <= Integer.parseInt(inputColum.getText()) * Integer.parseInt(inputFilas.getText()); i++) {
+            for (int i = 1; i <= (Integer.parseInt(inputColum.getText())-2) * (Integer.parseInt(inputFilas.getText())-2); i++) {
                 Lista listaadyacencia = new Lista();
                 Vertice nuevo = new Vertice(i, listaadyacencia);
-                listagrande.insertar(nuevo);
+                lista_disponible.insertar(nuevo);
             }
+     
+            for (int i = 1; i <= (Integer.parseInt(inputColum.getText())-2)*(Integer.parseInt(inputFilas.getText())-2); i++){
+//Esquina superior izquierda
+            if(i==1){
+                    Vertice nuevoadyacencia = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpNext());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia);
+                    Vertice nuevoadyacencia1 = lista_disponible.CopiarDato(lista_disponible.buscarAbajo(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia1);
+                    nuevoadyacencia.setpNext(nuevoadyacencia1);
+            }
+            //Esquina superior derecha
+            else if(i==Integer.parseInt(inputColum.getText())-2){
+            Vertice nuevoadyacencia = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpPrev());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia);
+                    Vertice nuevoadyacencia1 = lista_disponible.CopiarDato(lista_disponible.buscarAbajo(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia1);
+                    nuevoadyacencia.setpNext(nuevoadyacencia1);
+            }
+            //Esquina inferior izquierda
+            else if (i == ((Integer.parseInt(inputColum.getText())-2) * (Integer.parseInt(inputFilas.getText())-2) + 1) - (Integer.parseInt(inputColum.getText())-2)){
+            Vertice nuevoadyacencia = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpNext());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia);
+                    Vertice nuevoadyacencia1 = lista_disponible.CopiarDato(lista_disponible.buscarArriba(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia1);
+                    nuevoadyacencia.setpNext(nuevoadyacencia1);
+            }
+            //Esquina inferior derecha
+            else if(i == (Integer.parseInt(inputColum.getText())-2) * (Integer.parseInt(inputFilas.getText())-2)){
+            Vertice nuevoadyacencia = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpPrev());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia);
+                    Vertice nuevoadyacencia1 = lista_disponible.CopiarDato(lista_disponible.buscarArriba(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia1);
+                    nuevoadyacencia.setpNext(nuevoadyacencia1);
+            }
+            //Borde de arriba
+            else if (i < (Integer.parseInt(inputColum.getText())-2) && i > 1) {
+                    Vertice nuevoadyacencia = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpNext());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia);
+                    Vertice nuevoadyacencia1 = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpPrev());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia1);
+                    Vertice nuevoadyacencia2 = lista_disponible.CopiarDato(lista_disponible.buscarAbajo(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia2);
+                    nuevoadyacencia.setpNext(nuevoadyacencia1);
+                    nuevoadyacencia1.setpNext(nuevoadyacencia2);
+            }
+            //Borde de abajo
+            else if (i > (((Integer.parseInt(inputColum.getText())-2) * (Integer.parseInt(inputFilas.getText())-2)) + 1) - (Integer.parseInt(inputColum.getText())-2) && i < (Integer.parseInt(inputColum.getText())-2) * (Integer.parseInt(inputFilas.getText())-2)) {
+                    Vertice nuevoadyacencia = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpNext());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia);
+                    Vertice nuevoadyacencia1 = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpPrev());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia1);
+                    Vertice nuevoadyacencia2 = lista_disponible.CopiarDato(lista_disponible.buscarArriba(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia2);
+                    nuevoadyacencia.setpNext(nuevoadyacencia1);
+                    nuevoadyacencia1.setpNext(nuevoadyacencia2);
+            }
+            //Borde derecha
+            else if (i % (Integer.parseInt(inputColum.getText())-2) == 0) {
+                    Vertice nuevoadyacencia = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpPrev());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia);
+                    Vertice nuevoadyacencia1 = lista_disponible.CopiarDato(lista_disponible.buscarArriba(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia1);
+                    Vertice nuevoadyacencia2 = lista_disponible.CopiarDato(lista_disponible.buscarAbajo(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia2);
+                    nuevoadyacencia.setpNext(nuevoadyacencia1);
+                    nuevoadyacencia1.setpNext(nuevoadyacencia2);
+            }
+            //Borde Izquierda
+            else if (i % (Integer.parseInt(inputColum.getText())-2) == 1) {
+                    Vertice nuevoadyacencia3 = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpNext());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia3);
+                    Vertice nuevoadyacencia4 = lista_disponible.CopiarDato(lista_disponible.buscarArriba(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia4);
+                    Vertice nuevoadyacencia5 = lista_disponible.CopiarDato(lista_disponible.buscarAbajo(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia5);
+                    nuevoadyacencia3.setpNext(nuevoadyacencia4);
+                    nuevoadyacencia4.setpNext(nuevoadyacencia5);
+            }
+            else{
+                    Vertice nuevoadyacencia = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpPrev());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia);
+                    Vertice nuevoadyacencia1 = lista_disponible.CopiarDato(lista_disponible.buscarAbajo(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia1);
+                    Vertice nuevoadyacencia2 = lista_disponible.CopiarDato(lista_disponible.buscarArriba(i, Integer.parseInt(inputColum.getText())-2));
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia2);
+                    Vertice nuevoadyacencia3 = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpNext());
+                    lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia3);
+                    nuevoadyacencia.setpNext(nuevoadyacencia1);
+                    nuevoadyacencia1.setpNext(nuevoadyacencia2);
+                    nuevoadyacencia2.setpNext(nuevoadyacencia3);
+                }    
+            }
+            Lista listafinal = new Lista();
+            listafinal = lista_disponible.arbolExpMinPrim(Integer.parseInt(inputColum.getText())-2,Integer.parseInt(inputFilas.getText())-2);
+            this.setVisible(false);
+            Interfaz_inicio.numero_columnas = Integer.parseInt(inputColum.getText());
+            Interfaz_inicio.numero_filas = Integer.parseInt(inputFilas.getText());
+            JFrame miventana = new JFrame("Laberinto");
+            Interfaz_Juego game = new Interfaz_Juego();
+            miventana.add(game);
+            miventana.setSize(Interfaz_inicio.numero_columnas * 40 + 18, Interfaz_inicio.numero_filas * 40 + 41); //Tamanio de la ventana
+            miventana.setResizable(false);
+            miventana.setLocationRelativeTo(null);//Localizacion de la ventana
+            miventana.setVisible(true);
+            miventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
     }//GEN-LAST:event_generarActionPerformed
-
+   
     private void inputColumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputColumActionPerformed
 
     }//GEN-LAST:event_inputColumActionPerformed

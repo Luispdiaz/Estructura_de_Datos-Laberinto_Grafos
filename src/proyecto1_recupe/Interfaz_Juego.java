@@ -17,19 +17,19 @@ import javax.swing.JPanel;
  *
  * @author Frank Caicedo
  */
-public class Interfaz_laberinto extends JPanel { //Esta clase va a heredar los atributos de JPanel
-    Interfaz_laberinto2 laberinto = new Interfaz_laberinto2();
+public class Interfaz_Juego extends JPanel { //Esta clase va a heredar los atributos de JPanel
+    Interfaz_Laberinto1 laberinto = new Interfaz_Laberinto1();
     
-    @Override //Esto indica que hereda de JPanel (metodo)
+   @Override //Esto indica que hereda de JPanel (metodo)
     public void paint(Graphics grafico){//Esto nos permite dibujar en el JPanel
-        laberinto.paint(grafico);   
+        laberinto.paint_1(grafico);   
     }
     
     
     //Esta es la ventana 
     public static void main(String[] args){
         JFrame miventana = new JFrame("Laberinto");
-        Interfaz_laberinto game = new Interfaz_laberinto();
+        Interfaz_Juego game = new Interfaz_Juego();
         miventana.add(game);
         miventana.setSize(400,400); //Tamanio de la ventana
         miventana.setVisible(true);
