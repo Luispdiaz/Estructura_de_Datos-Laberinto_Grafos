@@ -5,8 +5,8 @@
 package proyecto1_recupe;
 
 /**
- *
- * @author Luisp
+ * Esta clase tiene los atributos necesarios para la creacion de cada uno de los vertices. 
+ * @author Sebastian Rodriguez, Frank Caicedo y Luis Pernia.
  */
 // Creamos la clase vertice con sus constructores.
 public class Vertice {

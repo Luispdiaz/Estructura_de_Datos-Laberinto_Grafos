@@ -7,8 +7,8 @@ package proyecto1_recupe;
 import java.util.Random;
 
 /**
- *
- * @author Luisp
+ * Esta clase tiene todos los atributos necesarios para la creacion de las listas y metodos usados a lo largo del programa. 
+ * @author Luis Pernia, Sebastian Rodriguez y Frank Caicedo.
  */
 
 // Se contruye la clase Lista con sus constructores
@@ -17,8 +17,6 @@ public class Lista {
     private Vertice pFirst;
     private Vertice pLast;
     private int cantidad;
-    static Vertice vOrigen;
-    static Vertice vFinal;
 
     public Lista() {
         this.pFirst = null;
@@ -130,14 +128,6 @@ public Vertice getEsquina(int constante, int inputColumnas, int inputFilas) {
     
     // Algoritmo de prim.
     public Lista arbolExpMinPrim(int inputFilas,int inputColum) {
-        int VerticesTotales = this.getCantidad();
-//        Lista Listaadyacencia2 = new Lista();
-//        vOrigen = new Vertice(0, Listaadyacencia2);
-//        vOrigen = this.getEsquina(VerticesTotales, inputFilas, inputColum);
-//        vOrigen.setEstado(3);
-//        vFinal = new Vertice(0, Listaadyacencia2);
-//        vFinal = this.getEsquinacontraria(vOrigen.getNumVertice(), inputFilas, inputColum);
-//        vFinal.setEstado(4);
         Lista gNuevo = new Lista();
         for (Vertice i = this.getpFirst(); i != null; i = i.getpNext()) {
             Lista Listaadyacencia = new Lista();
@@ -152,7 +142,7 @@ public Vertice getEsquina(int constante, int inputColumnas, int inputFilas) {
                     }
                     switch (aux.getEstado()) {
                         case 1 -> {
-                            Vertice nuevoadyacencia2 = this.CopiarDato(j);
+                            Vertice nuevoadyacencia2 = this.CopiarDato(aux);
                             nuevo.getlista_adyacencia().insertar(nuevoadyacencia2);
                         }
                         case 2 -> {

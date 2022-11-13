@@ -5,8 +5,8 @@
 package proyecto1_recupe;
 
 /**
- *
- * @author Frank Caicedo
+ * Esta clase realiza la impresion del laberinto 
+ * @author Frank Caicedo, Luis Pernia y Sebastian Rodriguez.
  */
 
 import java.awt.Graphics;

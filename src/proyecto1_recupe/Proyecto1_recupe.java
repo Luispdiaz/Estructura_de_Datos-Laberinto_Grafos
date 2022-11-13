@@ -5,8 +5,8 @@
 package proyecto1_recupe;
 
 /**
- *
- * @author Luisp
+ * Aqui llamamos al JFrame.
+ * @author Luis Pernia, Frank Caicedo y Sebastian Rodriguez.
  */
 public class Proyecto1_recupe {
 

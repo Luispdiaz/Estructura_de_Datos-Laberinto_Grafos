@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Luisp
+ * Este JFrame se encarga de pedir los datos al usuario y se encarga de encontrar las cosas necesarias para generar el laberinto.
+ * @author Luis Pernia, Frank Caicedo, Sebastian Rodriguez.
  */
 public class Interfaz_inicio extends javax.swing.JFrame {
     static int numero_filas;
@@ -87,8 +87,8 @@ public class Interfaz_inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void generarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarActionPerformed
-        if (Integer.parseInt(inputColum.getText()) < 5 || Integer.parseInt(inputColum.getText()) > 30 && Integer.parseInt(inputFilas.getText()) < 5 || Integer.parseInt(inputFilas.getText()) > 30)  {
-            JOptionPane.showMessageDialog(null, "No se permite un valor menor a 5 o mayor a 30");
+        if (Integer.parseInt(inputColum.getText()) < 5 || Integer.parseInt(inputColum.getText()) > 35 || Integer.parseInt(inputFilas.getText()) < 5 || Integer.parseInt(inputFilas.getText()) > 20)  {
+            JOptionPane.showMessageDialog(null, "No se permite una columna menor que 5 o mayor que 35 y no se permite una fila menor a 5 o mayor a 20");
         } else {
             for (int i = 1; i <= (Integer.parseInt(inputColum.getText())-2) * (Integer.parseInt(inputFilas.getText())-2); i++) {
                 Lista listaadyacencia = new Lista();
@@ -97,7 +97,7 @@ public class Interfaz_inicio extends javax.swing.JFrame {
             }
      
             for (int i = 1; i <= (Integer.parseInt(inputColum.getText())-2)*(Integer.parseInt(inputFilas.getText())-2); i++){
-//Esquina superior izquierda
+            //Esquina superior izquierda
             if(i==1){
                     Vertice nuevoadyacencia = lista_disponible.CopiarDato(lista_disponible.buscar(i).getpNext());
                     lista_disponible.buscar(i).getlista_adyacencia().insertar(nuevoadyacencia);
@@ -189,6 +189,7 @@ public class Interfaz_inicio extends javax.swing.JFrame {
             }
             Lista listafinal = new Lista();
             listafinal = lista_disponible.arbolExpMinPrim(Integer.parseInt(inputColum.getText())-2,Integer.parseInt(inputFilas.getText())-2);
+            Grafo ListaGrafoAdyacencias = new Grafo(listafinal);
             this.setVisible(false);
             Interfaz_inicio.numero_columnas = Integer.parseInt(inputColum.getText());
             Interfaz_inicio.numero_filas = Integer.parseInt(inputFilas.getText());
@@ -199,6 +200,7 @@ public class Interfaz_inicio extends javax.swing.JFrame {
             miventana.setResizable(false);
             miventana.setLocationRelativeTo(null);//Localizacion de la ventana
             miventana.setVisible(true);
+            Grafo grafo = ListaGrafoAdyacencias;
             miventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
     }//GEN-LAST:event_generarActionPerformed
@@ -273,8 +275,10 @@ public class Interfaz_inicio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Interfaz_inicio().setVisible(true);
+                
             }
-        });
+        }
+        );
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -9,8 +9,8 @@ import java.awt.Graphics;
 import java.util.Random;
 
 /**
- *
- * @author Sebas
+ * Esta clase obtiene todos los requerimientos para imprimir el laberinto.
+ * @author Sebastian Rodriguez, Frank Caicedo y Luis Pernia.
  */
 public class Interfaz_Laberinto1 {
 
