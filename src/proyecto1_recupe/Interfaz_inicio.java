@@ -87,8 +87,8 @@ public class Interfaz_inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void generarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarActionPerformed
-        if (Integer.parseInt(inputColum.getText()) < 3 || Integer.parseInt(inputColum.getText()) > 30 && Integer.parseInt(inputFilas.getText()) < 3 || Integer.parseInt(inputFilas.getText()) > 30)  {
-            JOptionPane.showMessageDialog(null, "No se permite un valor menor a 3 o mayor a 30");
+        if (Integer.parseInt(inputColum.getText()) < 5 || Integer.parseInt(inputColum.getText()) > 30 && Integer.parseInt(inputFilas.getText()) < 5 || Integer.parseInt(inputFilas.getText()) > 30)  {
+            JOptionPane.showMessageDialog(null, "No se permite un valor menor a 5 o mayor a 30");
         } else {
             for (int i = 1; i <= (Integer.parseInt(inputColum.getText())-2) * (Integer.parseInt(inputFilas.getText())-2); i++) {
                 Lista listaadyacencia = new Lista();

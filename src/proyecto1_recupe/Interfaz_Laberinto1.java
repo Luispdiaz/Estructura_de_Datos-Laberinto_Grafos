@@ -10,7 +10,7 @@ import java.util.Random;
 
 /**
  *
- * @author Luisp
+ * @author Sebas
  */
 public class Interfaz_Laberinto1 {
 
@@ -51,6 +51,7 @@ public class Interfaz_Laberinto1 {
 
     public int[][] obtieneLaberinto() {
         int laberinto[][] = new int[numeroFilas][numeroColumnas];
+        int cont = 1;
         for (int i = 0; i != numeroFilas; i++) {
             if (i == 0) {
                 for (int j = 0; j != numeroColumnas; j++) {
@@ -67,10 +68,8 @@ public class Interfaz_Laberinto1 {
                     } else if (j == numeroColumnas - 1) {
                         laberinto[i][j] = 2;
                     } else {
-                        int variable1 = i - 1;
-                        int variable2 = numeroColumnas * variable1;
-                        int variable3 = variable2 + j;
-                        laberinto[i][j] = Interfaz_inicio.lista_disponible.buscar(variable3).getEstado();
+                        laberinto[i][j] = Interfaz_inicio.lista_disponible.buscar(cont).getEstado();
+                        cont += 1;
                     }
                     }
                 }
@@ -78,17 +77,17 @@ public class Interfaz_Laberinto1 {
         Random rnd = new Random();
         boolean auxboolean = rnd.nextBoolean();
         if (auxboolean) {
-            int auxientrada = rnd.nextInt(1, 4);
-            int auxisalida = rnd.nextInt(1, 4);
+            int auxientrada = rnd.nextInt(1, numeroFilas-1);
+            int auxisalida = rnd.nextInt(1, numeroFilas-1);
             int auxjentrada = 0;
-            int auxjsalida = 4;
+            int auxjsalida = numeroColumnas - 1;
             laberinto[auxientrada][auxjentrada] = 3;
             laberinto[auxisalida][auxjsalida] = 4;
         } else {
-            int auxjentrada = rnd.nextInt(1, 4);
-            int auxjsalida = rnd.nextInt(1, 4);
+            int auxjentrada = rnd.nextInt(1, numeroColumnas-1);
+            int auxjsalida = rnd.nextInt(1, numeroColumnas-1);
             int auxientrada = 0;
-            int auxisalida = 4;
+            int auxisalida = numeroFilas - 1;
             laberinto[auxientrada][auxjentrada] = 3;
             laberinto[auxisalida][auxjsalida] = 4;    
     }
