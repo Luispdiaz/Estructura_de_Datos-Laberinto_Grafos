@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class Interfaz_Laberinto1 {
 
-    private int fila = 0; //Aqui indico las dimensiones dle laberinto
+    private int fila = 0; //Aqui se indican las dimensiones del laberinto
     private int columna = 0;
     private final int numeroFilas = Interfaz_inicio.numero_filas;
     private final int numeroColumnas = Interfaz_inicio.numero_columnas;

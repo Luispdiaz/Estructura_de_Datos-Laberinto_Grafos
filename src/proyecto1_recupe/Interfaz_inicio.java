@@ -16,7 +16,7 @@ public class Interfaz_inicio extends javax.swing.JFrame {
     static Lista lista_esquinas;
     static Lista lista_disponible;
     /**
-     * Creates new form Interfaz_Juego
+     * Creates new form Interfaz_Laberinto2
      */
     public Interfaz_inicio() {
         initComponents();
@@ -194,7 +194,7 @@ public class Interfaz_inicio extends javax.swing.JFrame {
             Interfaz_inicio.numero_columnas = Integer.parseInt(inputColum.getText());
             Interfaz_inicio.numero_filas = Integer.parseInt(inputFilas.getText());
             JFrame miventana = new JFrame("Laberinto");
-            Interfaz_Juego game = new Interfaz_Juego();
+            Interfaz_Laberinto2 game = new Interfaz_Laberinto2();
             miventana.add(game);
             miventana.setSize(Interfaz_inicio.numero_columnas * 40 + 18, Interfaz_inicio.numero_filas * 40 + 41); //Tamanio de la ventana
             miventana.setResizable(false);
